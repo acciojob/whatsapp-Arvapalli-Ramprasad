@@ -12,7 +12,7 @@ public class WhatsappRepository {
 
 //    step1. Save user
 
-    private HashMap<String,String> user = new HashMap<>();
+    private HashMap<String,User> user = new HashMap<>();
     private HashMap<Group, List<User>> groupUserMap;
 
     private HashMap<Group, List<Message>> groupMessageMap;
@@ -23,7 +23,7 @@ public class WhatsappRepository {
     private int messageId;
 
     public WhatsappRepository(){
-        this.user = new HashMap<String,String>();
+        this.user = new HashMap<String,User>();
         this.groupMessageMap = new HashMap<Group, List<Message>>();
         this.groupUserMap = new HashMap<Group, List<User>>();
         this.senderMap = new HashMap<Message, User>();
@@ -36,7 +36,8 @@ public class WhatsappRepository {
         if(userMobile.contains(mobile)){
              throw new Exception("User already exists");
         }else{
-            user.put(mobile,name);
+            User user1 = new User(name,mobile);
+            user.put(mobile,user1);
             userMobile.add(mobile);
         }
         return "SUCCESS";
