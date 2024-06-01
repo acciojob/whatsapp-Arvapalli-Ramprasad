@@ -3,13 +3,11 @@ package com.driver;
 public class Group {
     private String name;
     private int numberOfParticipants;
-    private User admin;
 
 
-    public Group(String name, int numberOfParticipants, User admin) {
+    public Group(String name, int numberOfParticipants) {
         this.name = name;
         this.numberOfParticipants = numberOfParticipants;
-        this.admin = admin;
     }
 
     public String getName() {
@@ -26,13 +24,5 @@ public class Group {
 
     public void setNumberOfParticipants(int numberOfParticipants) {
         this.numberOfParticipants = numberOfParticipants;
-    }
-
-    public User getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(User admin) {
-        this.admin = admin;
     }
 }

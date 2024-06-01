@@ -50,14 +50,14 @@ public class WhatsappRepository {
             // Note that a personal chat is not considered a group and the count is not updated for personal chats.
             User admin = users.get(0);
             String name = users.get(1).getName();
-            Group group = new Group(name,users.size(),admin);
+            Group group = new Group(name,users.size());
             groupUserMap.put(group,users);
             return group;
         }
         customGroupCount++;
         User admin = users.get(0);
         String name = "Group"+customGroupCount;
-        Group group = new Group(name,users.size(),admin);
+        Group group = new Group(name,users.size());
         groupUserMap.put(group,users);
         return group;
 
