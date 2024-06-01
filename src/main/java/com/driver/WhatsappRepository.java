@@ -64,7 +64,8 @@ public class WhatsappRepository {
     }
 
     public int createMessage(String content){
-        return 0;
+        int messagecount = ++messageId;
+        return messagecount;
     }
     public int sendMessage(Message message, User sender, Group group) throws Exception{
         //Throw "Group does not exist" if the mentioned group does not exist
