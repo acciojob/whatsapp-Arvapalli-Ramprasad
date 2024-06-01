@@ -71,7 +71,19 @@ public class WhatsappRepository {
         //Throw "Group does not exist" if the mentioned group does not exist
         //Throw "You are not allowed to send message" if the sender is not a member of the group
 
-        return  0;
+        if(!groupUserMap.containsKey(group)){
+            throw new Exception("Group does not exist");
+        } else if (groupUserMap.containsKey(group) && !groupUserMap.containsValue(sender)) {
+            throw new Exception("You are not allowed to send message");
+        }
+
+        List<Message> messageList = new ArrayList<>();
+        messageList.add(message);
+
+        int groupMessageCount = messageList.size();
+        groupMessageMap.put(group,messageList);
+
+        return groupMessageCount;
     }
 
     public String changeAdmin(User approver, User user, Group group) throws Exception{
