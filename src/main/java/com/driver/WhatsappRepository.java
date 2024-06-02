@@ -52,6 +52,11 @@ public class WhatsappRepository {
             String name = users.get(1).getName();
             Group group = new Group(name,users.size());
             groupUserMap.put(group,users);
+
+            //Assignin admin to every group
+            adminMap.put(group,admin);
+
+
             return group;
         }
         customGroupCount++;
@@ -59,6 +64,11 @@ public class WhatsappRepository {
         String name = "Group "+customGroupCount;
         Group group = new Group(name,users.size());
         groupUserMap.put(group,users);
+
+        //Assignin admin to every group
+        adminMap.put(group,admin);
+
+
         return group;
 
     }
@@ -92,7 +102,22 @@ public class WhatsappRepository {
         //Throw "Group does not exist" if the mentioned group does not exist
         //Throw "Approver does not have rights" if the approver is not the current admin of the group
         //Throw "User is not a participant" if the user is not a part of the group
-       return null;
+
+//        HashMap<Group, User> adminMap;
+
+        if(!adminMap.containsKey(group)){
+            throw new Exception("Group does not exist");
+        }
+        if(adminMap.get(group).getName()!=approver.getName()){
+            throw new Exception("Approver does not have rights");
+        }
+        if(groupUserMap.get(group).contains(user)){
+            throw new Exception("User is not a participant");
+        }
+
+        adminMap.put(group,user);
+
+       return "SUCCESS";
     }
 
     public int removeUser(User user) throws Exception{
